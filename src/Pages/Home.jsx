@@ -1,9 +1,10 @@
-import React from 'react';
-import { NavLink } from 'react-router';
-import { useFirebase } from '../Context/Firebase';
+import React, { useState } from "react";
+import { NavLink } from "react-router";
+import { useFirebase } from "../Context/Firebase";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 
 const Home = () => {
-  const { posts } = useFirebase();
+  const { posts, updatePostVotes ,searchQuery} = useFirebase();
 
   return (
     <div className="container">
@@ -31,6 +32,24 @@ const Home = () => {
               <div key={post.id} className="post-card">
                 <h3>{post.title}</h3>
                 <p className="post-content">{post.content}</p>
+
+                {/* Upvote & Downvote Section */}
+                <div className="vote-buttons">
+                  <button
+                    className="vote-btn upvote"
+                    onClick={() => updatePostVotes(post.id, "upvote")}
+                  >
+                    <FaThumbsUp /> {post.upvotes || 0}
+                  </button>
+
+                  <button
+                    className="vote-btn downvote"
+                    onClick={() => updatePostVotes(post.id, "downvote")}
+                  >
+                    <FaThumbsDown /> {post.downvotes || 0}
+                  </button>
+                </div>
+
                 <div className="post-footer">
                   <span className="category-tag">{post.category}</span>
                   <span className="author">Posted by {post.userEmail}</span>
@@ -39,7 +58,7 @@ const Home = () => {
             ))
           )}
         </div>
-      </div>
+        </div>
 
       <style>{`
         /* Global Styles */
@@ -154,15 +173,51 @@ const Home = () => {
         }
 
         .category-tag {
-          background-color: #e0f2fe;
+          background-color: #8dcd8d;
           color: #0369a1;
           padding: 4px 12px;
-          border-radius: 16px;
+          margin-top: 14px;
+          border-radius: 8px;
+          font-size: 1.1rem;
+          font:bold;
         }
 
         .author {
           color: #666;
           font-style: italic;
+        }
+
+        .vote-section {
+          display: flex;
+          gap: 10px;
+          margin-top: 10px;
+        }
+
+        .vote-buttons{
+        display: flex;
+        gap: 25px;
+        }
+
+        .vote-btn {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          border: none;
+          background: none;
+          cursor: pointer;
+          font-size: 1rem;
+        }
+
+        .thumb-icon {
+          font-size: 1.2rem;
+        }
+
+        .upvote {
+          color: green;
+        }
+
+        .downvote {
+          color: red;
         }
 
         /* Animations */
