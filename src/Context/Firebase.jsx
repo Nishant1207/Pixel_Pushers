@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from 'firebase/app';
-import React from "react";
 import { 
     getAuth, 
     createUserWithEmailAndPassword, 
@@ -23,7 +22,7 @@ const firebaseConfig = {
     authDomain: "novels-78c96.firebaseapp.com",
     databaseURL: "https://novels-78c96-default-rtdb.firebaseio.com",
     projectId: "novels-78c96",
-    storageBucket: "novels-78c96.firebasestorage.app",
+    storageBucket: "novels-78c96.appspot.com",
     messagingSenderId: "517654489939",
     appId: "1:517654489939:web:a1b3292d70db6771408fa6"
 };
@@ -37,31 +36,70 @@ const database = getDatabase(firebaseApp);
 
 const googleProvider = new GoogleAuthProvider();
 
-export const FirebaseProvider = (props) => {
+export const FirebaseProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [posts, setPosts] = useState([]); // ✅ Store posts
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        onAuthStateChanged(firebaseAuth, (user) => {
-            setUser(user || null);
+        onAuthStateChanged(firebaseAuth, (currentUser) => {
+            setUser(currentUser || null);
         });
     }, []);
 
-    // Fetch Posts from Database
     useEffect(() => {
         const postsRef = ref(database, "posts");
         onValue(postsRef, (snapshot) => {
             if (snapshot.exists()) {
                 const data = snapshot.val();
                 const loadedPosts = Object.values(data);
-                setPosts(loadedPosts); // ✅ Set posts in state
+                setPosts(loadedPosts);
             } else {
                 setPosts([]);
             }
         });
     }, []);
 
-    // Create a New Post
+    // ✅ Register User with Email and Password
+    const signupUserWithEmailAndPassword = async (email, password) => {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
+            return userCredential.user;
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    // ✅ Login User with Email and Password
+    const signinUserWithEmailAndPassword = async (email, password) => {
+        try {
+            const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+            return userCredential.user;
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    // ✅ Sign in with Google
+    const signInWithGoogle = async () => {
+        try {
+            const result = await signInWithPopup(firebaseAuth, googleProvider);
+            return result.user;
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    // ✅ Logout User
+    const logoutUser = async () => {
+        try {
+            await signOut(firebaseAuth);
+            setUser(null);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    // ✅ Create a New Post
     const createPost = async (title, content, category) => {
         if (!user) throw new Error("User is not logged in!");
 
@@ -78,19 +116,30 @@ export const FirebaseProvider = (props) => {
         });
     };
 
-    // Check if User is Logged In
-    const isLoggedIn = !!user;
+    // ✅ Upload File to Firebase Storage
+    const uploadFile = async (file) => {
+        if (!user) throw new Error("User is not logged in!");
+
+        const fileRef = storageRef(storage, `uploads/${user.uid}/${file.name}`);
+        await uploadBytes(fileRef, file);
+    };
 
     return (
         <FirebaseContext.Provider value={{
+            user,
+            signupUserWithEmailAndPassword,
+            signinUserWithEmailAndPassword,
+            signInWithGoogle,
+            logoutUser,
             createPost,
-            isLoggedIn,
-            posts, // ✅ Expose posts
+            uploadFile,
+            isLoggedIn: !!user,
+            posts
         }}>
-            {props.children}
+            {children}
         </FirebaseContext.Provider>
     );
 };
 
-// Hook for Using Firebase
+// Hook to use Firebase
 export const useFirebase = () => useContext(FirebaseContext);
