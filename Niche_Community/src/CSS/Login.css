@@ -1,0 +1,135 @@
+:root {
+    --primary-color: #52796F;
+    --secondary-color: #1B4332;
+    --light-bg: #F5F5F5;
+    --text-dark: #1A1A1A;
+    --text-light: #E5E5E5;
+    --accent: #E94560;
+    --border-radius: 8px;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--light-bg);
+}
+
+.login-form {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-form h2 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+}
+
+.form-group input {
+    padding: 0.75rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    outline: none;
+    font-size: 1rem;
+}
+
+.login-btn, .google-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.login-btn {
+    background: var(--secondary-color);
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+.login-btn:hover {
+    background: var(--primary-color);
+}
+
+.divider {
+    margin: 1rem 0;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.divider::before, .divider::after {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 1px;
+    background: var(--text-dark);
+    top: 50%;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.google-btn {
+    background: white;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.signup-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.signup-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-form {
+        padding: 1.5rem;
+    }
+}

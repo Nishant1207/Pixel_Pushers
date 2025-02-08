@@ -1,0 +1,228 @@
+:root {
+    --dark-blue: #1A1A2E;
+    --light-text: #E5E5E5;
+    --accent-blue: #0F3460;
+    --hover-red: #E94560;
+    --nav-blue: #16213E;
+}
+
+:root {
+    --deep-green: #1B4332;
+    --sage-green: #52796F;
+    --soft-green: #84A98C;
+    --mint-green: #CAD2C5;
+    --cream: #F5F5F5;
+    --dark-accent: #354F52;
+}
+
+.navbar {
+    background-color: var(--deep-green);
+    color: var(--cream);
+    font-family: 'Mono', monospace;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--mint-green);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--soft-green);
+}
+
+.search-bar {
+    display: flex;
+    background-color: var(--sage-green);
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: var(--cream);
+    padding: 0.5rem 1rem;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: var(--dark-accent);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.search-bar button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke: var(--cream);
+}
+
+
+.navbar {
+    background-color: var(--dark-blue);
+    color: var(--light-text);
+    font-family: 'Mono', monospace;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--light-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--hover-red);
+}
+
+.search-bar {
+    display: flex;
+    background-color: var(--accent-blue);
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: var(--light-text);
+    padding: 0.5rem 1rem;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: var(--nav-blue);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.search-bar button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke: var(--light-text);
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.nav-links-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin-right: 1rem;
+}
+
+.nav-links li {
+    margin: 0 1.5rem;
+}
+
+.nav-links a,
+.auth-buttons a {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.auth-buttons a:hover {
+    color: var(--hover-red);
+}
+
+.auth-buttons a {
+    background-color: var(--accent-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+}
+
+/* Base styling for auth buttons (for both anchors and buttons) */
+.auth-btn {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    background-color: var(--accent-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem; /* ensures rounded styling */
+    border: none;
+    cursor: pointer;
+}
+
+/* Override for Logout button: same rounded styling but maroon background */
+.logout-btn {
+    background-color: maroon;
+    font-weight: bold;
+    /* inheriting border-radius from .auth-btn */
+}
+
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+        font-size: 2rem;
+        color: var(--light-text);
+        padding: 0.5rem;
+        z-index: 1001;
+    }
+
+    .nav-links-container {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100%;
+        background-color: var(--nav-blue);
+        flex-direction: column;
+        padding: 2rem;
+        transition: right 0.3s ease;
+    }
+
+    .nav-links-container.open {
+        right: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+    .auth-buttons {
+        margin-top: 2rem;
+    }
+}
