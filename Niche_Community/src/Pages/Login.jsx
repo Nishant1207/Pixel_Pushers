@@ -50,7 +50,7 @@ export const LoginPage = () => {
     return (
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
-                <h2>Login to SkillSync</h2>
+                <h2>Login to ConnectHub</h2>
 
                 <input type="text" name="fakeEmail" style={{ display: "none" }} autoComplete="off" />
 

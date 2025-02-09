@@ -5,7 +5,7 @@ import Post from './Post.jsx';
 
 const RedditFeed = () => {
 
-    const [subreddit, setSubReddit]=useState("react");
+    const [subreddit, setSubReddit]=useState("");
     const [Error,setError]=useState("");
     const [loading, setLoading]=useState(false);
     const [posts,setPosts]=useState([]);

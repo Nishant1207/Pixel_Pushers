@@ -4,10 +4,12 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { FirebaseProvider } from './Context/Firebase.jsx'
+import AIInteractionPopup from './components/Popup';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <FirebaseProvider>
+      <AIInteractionPopup />
       <App />
     </FirebaseProvider>
   </BrowserRouter>
