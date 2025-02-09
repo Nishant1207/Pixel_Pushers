@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Hamburger from "../Components/Hamburger";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom"; 
 import '../CSS/Navbar.css';
 import { useFirebase } from "../Context/Firebase";
 
@@ -29,6 +29,7 @@ const Navbar = () => {
             <li><NavLink to="/community">Community</NavLink></li>
             <li><NavLink to="/projects">Projects</NavLink></li>
             <li><NavLink to="/events">Events</NavLink></li>
+            <li><NavLink to="/redditfeed">Posts</NavLink></li>  {/* updated nav-link */}
           </ul>
           <div className="auth-buttons">
             { isLoggedIn ? (

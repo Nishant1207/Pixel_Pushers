@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router-dom'; // Changed from 'react-router'
 import './App.css'
 import Navbar from './Components/Navbar'
 import { LoginPage } from './Pages/Login'
@@ -8,6 +8,7 @@ import CreatePost from './Pages/CreatePost'
 import Community from './Pages/Community'
 import Projects from './Pages/Projects'
 import Events from './Pages/Events'
+import RedditFeed from './Pages/RedditFeed'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/community' element={<Community />}/>
         <Route path='/projects' element={<Projects />}/>
         <Route path='/events' element={<Events />}/>
+        <Route path='/redditfeed' element={<RedditFeed />} />  {/* updated route path */}
       </Routes>
     </>
   )

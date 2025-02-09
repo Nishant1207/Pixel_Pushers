@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import { useFirebase } from "../Context/Firebase";
 
 const Hamburger = () => {
@@ -86,8 +86,12 @@ const Hamburger = () => {
               ))
             )}
             <div className="posts-overlay">
-              <h2 className="hamburger-heading" style={{ fontSize: '2rem', marginBottom: '10px' }}>Posts</h2>
-              <NavLink to="/createPost" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <NavLink to="/redditfeed" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <h2 className="hamburger-heading" style={{ fontSize: '2rem', marginBottom: '10px' }}>
+                  Posts
+                </h2>
+              </NavLink>
+              <NavLink to="/createpost" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <h4 className="hamburger-sub-heading" style={{ fontSize: '1.2rem', marginLeft: '20px', marginBottom: '10px' }}>
                   <span style={{ marginRight: '4px' }}>+</span> Add Posts
                 </h4>
