@@ -10,7 +10,8 @@ ConnectHub is an engagement platform where users can share and showcase their th
 Deployed Link: [https://connect-hubb.netlify.app/](https://connect-hubb.netlify.app/)
 
 ## Directory Structure
-Niche_Community/
+
+``Niche_Community/
 ├─ public/
 ├─ src/
 │ ├─ components/
@@ -25,7 +26,7 @@ Niche_Community/
 │ └─ index.jsx
 ├─ package.json
 ├─ vite.config.js
-└─ ...
+└─ ...``
 
 ## Features
 - User registration and login authentication  
@@ -42,7 +43,8 @@ Niche_Community/
 - Prioritized ease of use and community engagement features.  
 
 ## Installation & Getting Started
-  After cloning the project
+  After cloning the project,
+  
   **Install:**
     ```bash
     npm install
